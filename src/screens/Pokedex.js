@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  View } from "react-native";
+import {   SafeAreaView } from "react-native";
 
 import { getPokemonApi, getPokemonDetailbyUrlApi } from "../api/pokemon";
 import PokemonList from "../components/PokemonList";
@@ -45,8 +45,8 @@ export default function Pokedex() {
   };
 
   return (
-    <View>
+    <SafeAreaView>
       <PokemonList pokemons={pokemons} />
-    </View>
+    </SafeAreaView>
   );
 }
