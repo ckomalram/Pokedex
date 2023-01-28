@@ -3,7 +3,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
 
+//Custom Stack NAV
+import FavoriteNavigation from "./FavoriteNavigation";
+import PokedexNavigation from "./PokedexNavigation";
+import AccountNavigation from "./AccountNavigation";
 
+//Screens
 import FavoriteScreen from '../screens/Favorite';
 import PokedexScreen from '../screens/Pokedex';
 import AccountScreen from '../screens/Account';
@@ -15,7 +20,8 @@ export default function Navigation() {
   return (
 
     <Tab.Navigator
-      // screenOptions={({ route }) => ({
+      screenOptions={({ route }) => ({
+        headerShown: false
       //   tabBarIcon: ({ focused, color, size }) => {
       //     let iconName;
 
@@ -31,32 +37,36 @@ export default function Navigation() {
       //   },
       //   tabBarActiveTintColor: '#507AF8',
       //   tabBarInactiveTintColor: '#000',
-      // })}
+      })}
       >
-      <Tab.Screen name="Favorite" component={FavoriteScreen}
+      <Tab.Screen name="FavoriteTab" component={FavoriteNavigation}
         options={
           {
             tabBarLabel: 'Favoritos',
             tabBarIcon: ({color,size}) => {
               return <Ionicons name="heart" size={size} color={color} />;
-            }
+            },
+            headerTitle: 'Favoritos'
           }}
       />
-      <Tab.Screen name="Pokedex" component={PokedexScreen}
+      <Tab.Screen name="PokedexTab" component={PokedexNavigation}
         options={
           {
             tabBarLabel: '',
             tabBarIcon: () => renderPokeball(),
+            headerTitle: 'Pokedex'
           }}
 
       />
-      <Tab.Screen name="Account" component={AccountScreen}
+      <Tab.Screen name="AccountTab" component={AccountNavigation}
         options={
           {
             tabBarLabel: 'Mi Cuenta',
             tabBarIcon: ({color,size}) => {
               return <Ionicons name="person-circle" size={size} color={color} />;
-            }
+            },
+            headerTitle: 'Mi cuenta'
+            
           }}
 
       />
