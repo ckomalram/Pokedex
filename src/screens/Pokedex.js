@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import {  View } from "react-native";
 
 import { getPokemonApi, getPokemonDetailbyUrlApi } from "../api/pokemon";
-
+import PokemonList from "../components/PokemonList";
 
 export default function Pokedex() {
   const [pokemons, setPokemons] = useState([]);
-  console.log('pok state--->', pokemons);
+  // console.log('pok state--->', pokemons);
 
   useEffect(() => {
-    console.log("Hola useeffect");
+    // console.log("Hola useeffect");
 
     //Anonima function
     (async () => {
@@ -46,7 +46,7 @@ export default function Pokedex() {
 
   return (
     <View>
-      <Text> Pokedex screen </Text>
+      <PokemonList pokemons={pokemons} />
     </View>
   );
 }
