@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { View, Text, StyleSheet, TextInput, Button, Keyboard } from 'react-native'
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { user, userDetails } from "../../utils/dummy";
+import useAuth from "../../hooks/useAuth";
 
 export default function LoginForm() {
 
     const [error, setError] = useState("");
+    const {login} = useAuth();
+    // console.log(useAuth());
+    // console.log(useAuth().auth);
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -25,7 +29,8 @@ export default function LoginForm() {
                 // console.log('Usuario o contraseña es incorrecto.')
             } else {
                 console.log('Login exitoso!');
-                console.log(userDetails);
+                // console.log(userDetails);
+                login(userDetails);
             }
         }
     })
