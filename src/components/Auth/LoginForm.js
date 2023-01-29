@@ -1,16 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, Button, Keyboard } from 'react-native'
-
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import { user, userDetails } from "../../utils/dummy";
+
 export default function LoginForm() {
+
+    const [error, setError] = useState("");
 
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(validationSchema()),
-        validateOnChange: false ,
-        onSubmit: (data) => console.log('Formulario enviado...' , data)
+        validateOnChange: false,
+        onSubmit: (data) => {
+            // console.log('Formulario enviado...' , data)
+
+            setError('');
+
+            const { username, password } = data;
+
+            if (username !== user.username || password !== user.password) {
+                setError('Usuario o contraseña es incorrecto');
+                // console.log('Usuario o contraseña es incorrecto.')
+            } else {
+                console.log('Login exitoso!');
+                console.log(userDetails);
+            }
+        }
     })
 
     return (
@@ -20,14 +37,14 @@ export default function LoginForm() {
                 placeholder="Nombre de usuario"
                 autoCapitalize='none'
                 value={formik.values.username}
-                onChangeText={(text)=> formik.setFieldValue('username', text)}
+                onChangeText={(text) => formik.setFieldValue('username', text)}
             />
             <TextInput style={styles.input}
                 placeholder="Contraseña"
                 autoCapitalize='none'
                 secureTextEntry={true}
                 value={formik.values.password}
-                onChangeText={(text)=> formik.setFieldValue('password', text)}
+                onChangeText={(text) => formik.setFieldValue('password', text)}
             />
 
             <Button
@@ -38,9 +55,13 @@ export default function LoginForm() {
             <Text style={styles.error}>
                 {formik.errors.username}
             </Text>
-            
+
             <Text style={styles.error}>
                 {formik.errors.password}
+            </Text>
+
+            <Text style={styles.error}>
+                {error}
             </Text>
 
         </View>
@@ -80,7 +101,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10
     },
-    error:{
+    error: {
         textAlign: 'center',
         color: "red",
         marginTop: 10
