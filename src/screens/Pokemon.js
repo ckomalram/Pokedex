@@ -4,13 +4,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 import { getPokemonDetailsApi } from "../api/pokemon";
+import useAuth from "../hooks/useAuth";
 import Header from "../components/Pokemon/Header";
 import Type from "../components/Pokemon/Type";
 import Stats from "../components/Pokemon/Stats";
+import Favorite from "../components/Pokemon/Favorite";
 
 export default function Pokemon(props) {
   const { navigation, route } = props;
   const { params } = route;
+
+  const {auth} = useAuth();
 
   // console.log(params);
   // console.log(route);
@@ -20,7 +24,7 @@ export default function Pokemon(props) {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => null,
+      headerRight: () => (auth ? <Favorite id={params.id} /> : null),
       headerLeft: () => <Ionicons 
       name="arrow-back-outline" 
       size={30} color="#fff"
@@ -28,13 +32,14 @@ export default function Pokemon(props) {
        onPress={navigation.goBack}
        />
     })
-  }, [navigation, params])
+  }, [navigation, params,pokemon ])
 
   useEffect(() => {
     (async () => {
       try {
         const response = await getPokemonDetailsApi(params.id);
-        // console.log(response);
+        console.log('response####');
+        console.log(response);
         setPokemon(response);
       } catch (error) {
         console.error(error);
