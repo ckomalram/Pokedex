@@ -38,8 +38,8 @@ export default function Pokemon(props) {
     (async () => {
       try {
         const response = await getPokemonDetailsApi(params.id);
-        console.log('response####');
-        console.log(response);
+        // console.log('response####');
+        // console.log(response);
         setPokemon(response);
       } catch (error) {
         console.error(error);

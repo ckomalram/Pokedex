@@ -1,12 +1,19 @@
-import React, { Component } from 'react'
-import { Text, View , SafeAreaView} from 'react-native'
+import React  from 'react'
+import { Text,  SafeAreaView, Button} from 'react-native'
+import { getPokemonsFavoriteApi } from "../api/Favorite"
 
-export default class Favorite extends Component {
-  render() {
-    return (
-      <SafeAreaView>
-        <Text> Favorte screens </Text>
-      </SafeAreaView>
-    )
-  }
+
+export default function Favorite() {
+
+  const checkFavorites = async () => {
+    const response = await getPokemonsFavoriteApi();
+    console.log(response);
+  };
+
+  return (
+    <SafeAreaView>
+      <Text>Favorite</Text>
+      <Button title="Obtener favoritos" onPress={checkFavorites} />
+    </SafeAreaView>
+  );
 }
