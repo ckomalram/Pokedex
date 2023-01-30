@@ -14,3 +14,20 @@ Se crea un hook personalizado.
 El hook será creado en base al ontexto authcontext.
 Se agrega el auth provider por encima de los componentes que podrán heredarlos.
 Se utiliza el useAuth en los lugares que se utilizarán las funciones declaraas en el contexto.
+
+
+# Link para compilar apk android y ios 
+You need firt install cli of expo:
+    npm install -g expo-cli
+
+
+https://docs.expo.dev/build/setup/
+
+
+https://docs.expo.dev/archive/classic-updates/building-standalone-apps/
+    To build an APK, run the command:
+        * expo build:android -t apk
+    We recommend building an Android App Bundle (aab) for submitting the app to the Google Play Store. To build an aab, run the command:
+        * expo build:android -t app-bundle
+
+https://developer.apple.com/programs/
