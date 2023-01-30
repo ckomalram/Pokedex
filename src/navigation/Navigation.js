@@ -19,7 +19,7 @@ export default function Navigation() {
 
   return (
 
-    <Tab.Navigator
+    <Tab.Navigator initialRouteName='PokedexTab'
       screenOptions={({ route }) => ({
         headerShown: false
       //   tabBarIcon: ({ focused, color, size }) => {
