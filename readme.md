@@ -23,6 +23,7 @@ You need firt install cli of expo:
 
 https://docs.expo.dev/build/setup/
 
+https://docs.expo.dev/build-reference/apk/
 
 https://docs.expo.dev/archive/classic-updates/building-standalone-apps/
     To build an APK, run the command:
